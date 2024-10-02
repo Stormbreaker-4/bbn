@@ -19,10 +19,10 @@ Mr. Holmes is working in his office when he receives a phone call from his neigh
 ```math
 P(A|B) = \frac {P(B|A)P(A)}{P(B)}
 ```
-where $`A`$ and $B$ are events and $P(B) \neq 0$.
-- $P(A \mid B)$ is a conditional probability: the probability of event A occurring given that B is true. It is also called the posterior probability of A given B.
-- $P(B \mid A)$ is also a conditional probability: the probability of event B occurring given that A is true. It can also be interpreted as the likelihood of A given a fixed B because $P(B|A) = L(A|B)$.
-- $P(A)$ and $P(B)$ are the probabilities of observing A and B respectively without any given conditions; they are known as the prior probability and marginal probability.
+where $`A`$ and $`B`$ are events and $`P(B) \neq 0`$.
+- $P(A \mid B)$ is a conditional probability: the probability of event A occurring given that B is true. It is also called the posterior probability of $`A`$ given $`B`$.
+- $P(B \mid A)$ is also a conditional probability: the probability of event B occurring given that A is true. It can also be interpreted as the likelihood of A given a fixed B because $`P(B|A) = L(A|B)`$.
+- $`P(A)`$ and $`P(B)`$ are the probabilities of observing A and B respectively without any given conditions; they are known as the prior probability and marginal probability.
 
 # Bayesian network
 - A **Bayesian network** (also known as a **belief network**) is a probabilistic graphical model that represents a set of variables and their conditional dependencies via a directed acyclic graph.
@@ -37,12 +37,17 @@ The joint probability function (by the chain rule of probability) is given by,
 ```
 where G = "Grass wet (true/false)", S = "Sprinkler turned on (true/false)", and R = "Raining (true/false)".
 - The model can answer questions about the presence of a cause given the presence of an effect like "What is the probability that it is raining, given the grass is wet?" by using conditional probability and summing over all the nuisance variables:
-$$\displaystyle 
-\Pr(R = T \mid G = T)= {\frac {\Pr(G=T,R=T)}{\Pr(G=T)}} = {\frac {\sum _{x\in \{T,F\}}\Pr(G=T,S=x,R=T)}{\sum _{x,y\in \{T,F\}}\Pr(G=T,S=x,R=y)}}$$
-- Using the expansion for the joint probability function $\Pr(G,S,R)$ and the conditional probabilities from the conditional probability tables, we can evaluate each term in the sums in the numerator and denominator. For example, 
 ```math
 \displaystyle 
-\Pr(G,S,R) = \text{Probablility that the grass is wet and the sprinkler is on and it is raining}\\
+\Pr(R = T \mid G = T)= {\frac {\Pr(G=T,R=T)}{\Pr(G=T)}} = {\frac {\sum _{x\in \{T,F\}}\Pr(G=T,S=x,R=T)}{\sum _{x,y\in \{T,F\}}\Pr(G=T,S=x,R=y)}}
+```
+- Using the expansion for the joint probability function $\Pr(G,S,R)$ and the conditional probabilities from the conditional probability tables, we can evaluate each term in the sums in the numerator and denominator. For example, 
+
+```math
+\Pr(G,S,R) = \text{Probablility that the grass is wet and the sprinkler is on and it is raining}
+```
+```math
+\displaystyle 
 \begin{aligned}
 \Pr(G = T,S = T,R = T)
 &= \Pr(G = T \mid S = T, R = T) \Pr(S = T \mid R = T) \Pr(R = T)\\
