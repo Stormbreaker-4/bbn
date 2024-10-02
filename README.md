@@ -17,10 +17,10 @@ Mr. Holmes is working in his office when he receives a phone call from his neigh
 ### Statement of theorem
 - Bayes' theorem is stated mathematically as the following equation:
 $$P(A|B) = \frac {P(B|A)P(A)}{P(B)}$$
-where $$A$$ and $$B$$ are and $P(B)\neq0$.
-- $$P(A \mid B)$$ is a conditional probability: the probability of event $$A$$ occurring given that $$B$$ is true. It is also called the posterior probability of $$A$$ given $$B$$.
-- $$P(B \mid A)$$ is also a conditional probability: the probability of event $$B$$ occurring given that $$A$$ is true. It can also be interpreted as the likelihood of $$A$$ given a fixed $$B$$ because $P(B|A)=L(A|B)$.
-- $$P(A)$$ and $$P(B)$$ are the probabilities of observing $$A$$ and $$B$$ respectively without any given conditions; they are known as the prior probability and marginal probability.
+where $$A$$ and $$B$$ are and $$P(B) \neq 0$$.
+- $$P(A \mid B)$$ is a conditional probability: the probability of event A occurring given that B is true. It is also called the posterior probability of A given B.
+- $$P(B \mid A)$$ is also a conditional probability: the probability of event B occurring given that A is true. It can also be interpreted as the likelihood of A given a fixed B because $$P(B|A) = L(A|B)$$.
+- $$P(A)$$ and $$P(A)$$ are the probabilities of observing A and B respectively without any given conditions; they are known as the prior probability and marginal probability.
 
 # Bayesian network
 - A **Bayesian network** (also known as a **belief network**) is a probabilistic graphical model that represents a set of variables and their conditional dependencies via a directed acyclic graph.
@@ -37,7 +37,9 @@ $$\displaystyle
 \Pr(R = T \mid G = T)= {\frac {\Pr(G=T,R=T)}{\Pr(G=T)}} = {\frac {\sum _{x\in \{T,F\}}\Pr(G=T,S=x,R=T)}{\sum _{x,y\in \{T,F\}}\Pr(G=T,S=x,R=y)}}$$
 - Using the expansion for the joint probability function $\Pr(G,S,R)$ and the conditional probabilities from the conditional probability tables (CPTs) stated in the diagram, one can evaluate each term in the sums in the numerator and denominator. For example, 
 $$P(G,S,R) = \text{Probablility that the grass is wet and the sprinkler is on and it is raining}$$
-$$\begin{aligned}
+
+$$\displaystyle 
+\begin{aligned}
 \Pr(G = T,S = T,R = T)
 &= \Pr(G = T \mid S = T, R = T) \Pr(S = T \mid R = T) \Pr(R = T)\\
 &= 0.99 \times 0.01 \times 0.2\\
