@@ -17,7 +17,6 @@ a_cpd = TabularCPD(alarm, 2, [[0.99, 0.97, 0.27, 0.001], [0.01, 0.03, 0.73, .999
 n_cpd = TabularCPD(neighbour_call, 2, [[0.98, 0.005], [0.02, 0.995]], evidence=[alarm], evidence_card=[2], state_names={neighbour_call: ['True', 'False'], alarm: ['True', 'False']});
 
 graph.add_cpds(b_cpd, e_cpd, a_cpd, n_cpd);
-# print(graph.get_state_probability({neighbour_call: 'True', alarm: 'True', burglary: 'True', earthquake: 'False'}));
 
 # Check if the model is valid
 assert graph.check_model()
@@ -52,22 +51,19 @@ def plot_inference_result(inference_result, title="Inference Result"):
 # Visualize Bayesian Network Structure
 plot_bayesian_network(graph)
 
-# Example query 1: Probability that the alarm is ringing given burglary but no earthquake
+# Query 1: Probability that the alarm is ringing given burglary but no earthquake
 prob_alarm = infer.query(variables=[alarm], evidence={burglary: 'True', earthquake: 'False'})
 print("P(Alarm | Burglary, ¬Earthquake):")
 print(prob_alarm)
 plot_inference_result(prob_alarm, title="P(Alarm | Burglary, ¬Earthquake)")
 
-prob_neighbour = infer.query(variables=[neighbour_call], evidence={burglary: 'True', earthquake: 'False'})
-print("P(Neighbour Call | Burglary, ¬Earthquake):")
-print(prob_neighbour)
-plot_inference_result(prob_neighbour, title="P(Neighbour Call | Burglary, ¬Earthquake)")
+# Query 2: Probability that a burglary has occured given a call from the neighbour due to the alarm and an earthquake
+prob_burglar = infer.query(variables=[burglary], evidence={alarm: 'True', neighbour_call: 'True', earthquake: 'True'})
+print("P(Burglary | Alarm, Neighbour Call, Earthquake):")
+print(prob_burglar)
+plot_inference_result(prob_burglar, title="P(Burglary | Alarm, Neighbour Call, Earthquake)")
 
-prob_neighbour = infer.query(variables=[neighbour_call], evidence={burglary: 'True',})
-print("P(Neighbour Call | Burglary, Earthquake):")
-print(prob_neighbour)
-plot_inference_result(prob_neighbour, title="P(Neighbour Call | Burglary, Earthquake)")
-
+# Query 3: Probability that the a burglary has occured given a call from the neighbour and an earthquake took place
 prob_burglar = infer.query(variables=[burglary], evidence={neighbour_call: 'True', earthquake: 'True'})
 print("P(Burglary | Neighbour Call, Earthquake):")
 print(prob_burglar)
